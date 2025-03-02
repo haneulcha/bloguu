@@ -10,11 +10,9 @@ const posts = (await getCollection("bobs-burgers")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 
-const films = (await getCollection("films")).sort(
+const films = (await getCollection("film")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
-
-console.log({ posts, data: posts[0].data });
 ---
 
 <!DOCTYPE html>
@@ -45,18 +43,20 @@ console.log({ posts, data: posts[0].data });
       <section>
         <ul>
           {
-            posts.map((post) => (
-              <li>
-                <FormattedDate date={post.data.pubDate} />
-                <a href={`/review/${post.collection}/${post.slug}/`}>
-                  <span>Bob's Burgers</span>
-                  <span>
-                    S{post.data.season}E{post.data.episodeNumber}:
-                  </span>
-                  {post.data.title}
-                </a>
-              </li>
-            ))
+            posts.map((post) => {
+              return (
+                <li>
+                  <FormattedDate date={post.data.pubDate} />
+                  <a href={`/review/${post.collection}/${post.id}/`}>
+                    <span>Bob's Burgers</span>
+                    <span>
+                      S{post.data.season}E{post.data.episodeNumber}:
+                    </span>
+                    {post.data.title}
+                  </a>
+                </li>
+              );
+            })
           }
         </ul>
         <ul>
@@ -64,7 +64,7 @@ console.log({ posts, data: posts[0].data });
             films.map((film) => (
               <li>
                 <FormattedDate date={film.data.pubDate} />
-                <a href={`/review/${film.collection}/${film.slug}/`}>
+                <a href={`/review/${film.collection}/${film.id}/`}>
                   <span>{film.data.title}</span>
                 </a>
               </li>

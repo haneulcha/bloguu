@@ -1,0 +1,94 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+
+type Props = CollectionEntry<"posts">["data"];
+
+const props = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, postType } = props;
+
+// Type-specific props
+const isReview = postType === 'review';
+const isTvEpisode = isReview && 'target' in props && props.target === 'tv-episode';
+const rating = isReview && 'rating' in props ? props.rating : undefined;
+const season = isTvEpisode && 'season' in props ? props.season : undefined;
+const episodeNumber = isTvEpisode && 'episodeNumber' in props ? props.episodeNumber : undefined;
+const seriesTitle = isTvEpisode && 'seriesTitle' in props ? props.seriesTitle : undefined;
+---
+
+<html lang="ko">
+  <head>
+    <BaseHead title={title} description={description ?? title} />
+    <style>
+      .title {
+        font-size: 2em;
+        margin: 0.25em 0 0;
+      }
+      .subtitle {
+        font-size: 1.2em;
+        color: #666;
+        margin: 0.5em 0;
+      }
+      .meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        color: #666;
+        font-size: 0.9rem;
+      }
+      .rating {
+        font-weight: bold;
+        color: #f39c12;
+      }
+      hr {
+        border-top: 1px solid #ddd;
+        margin: 1rem 0;
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+      article :global(p) {
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <article>
+        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+
+        <h1 class="title">{title}</h1>
+
+        {isTvEpisode && (
+          <h2 class="subtitle">
+            {seriesTitle} - S{season}E{episodeNumber}
+          </h2>
+        )}
+
+        <div class="meta">
+          <FormattedDate date={pubDate} />
+          {isReview && rating !== undefined && (
+            <span class="rating">★ {rating}/10</span>
+          )}
+        </div>
+
+        {
+          updatedDate && (
+            <div class="last-updated-on">
+              Last updated on <FormattedDate date={updatedDate} />
+            </div>
+          )
+        }
+
+        <hr />
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

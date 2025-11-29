@@ -6,8 +6,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
@@ -22,6 +22,8 @@ const posts = (await getCollection("blog")).sort(
       }
       ul li {
         display: flex;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
       }
       ul li :global(time) {
         flex: 0 0 130px;
@@ -31,18 +33,34 @@ const posts = (await getCollection("blog")).sort(
       ul li a:visited {
         color: #8e32dc;
       }
+      .post-type {
+        flex: 0 0 80px;
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        text-align: center;
+      }
+      .type-article { background: #e3f2fd; color: #1976d2; }
+      .type-dev { background: #f3e5f5; color: #7b1fa2; }
+      .type-guide { background: #e8f5e9; color: #388e3c; }
+      .type-review { background: #fff3e0; color: #f57c00; }
+      .type-creation { background: #fce4ec; color: #c2185b; }
     </style>
   </head>
   <body>
     <Header />
     <main>
       <section>
+        <h1>All Posts</h1>
         <ul>
           {
             posts.map((post) => (
               <li>
                 <FormattedDate date={post.data.pubDate} />
-                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                <span class={`post-type type-${post.data.postType}`}>
+                  {post.data.postType}
+                </span>
+                <a href={`/posts/${post.id}/`}>{post.data.title}</a>
               </li>
             ))
           }

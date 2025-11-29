@@ -3,17 +3,69 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+).slice(0, 5);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      ul {
+        list-style-type: none;
+        padding: unset;
+      }
+      ul li {
+        margin-bottom: 1rem;
+      }
+      ul li a {
+        font-size: 1.1rem;
+      }
+      .post-meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 0.3rem;
+        font-size: 0.9rem;
+        color: #666;
+      }
+      .post-type {
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
+      .type-article { background: #e3f2fd; color: #1976d2; }
+      .type-dev { background: #f3e5f5; color: #7b1fa2; }
+      .type-guide { background: #e8f5e9; color: #388e3c; }
+      .type-review { background: #fff3e0; color: #f57c00; }
+      .type-creation { background: #fce4ec; color: #c2185b; }
+    </style>
   </head>
   <body>
     <Header title={SITE_TITLE} />
     <main>
-      <h1>🚧</h1>
+      <h1>Recent Posts</h1>
+      <ul>
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+              <div class="post-meta">
+                <FormattedDate date={post.data.pubDate} />
+                <span class={`post-type type-${post.data.postType}`}>
+                  {post.data.postType}
+                </span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/posts/">View all posts →</a>
     </main>
     <Footer />
   </body>

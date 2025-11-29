@@ -4,10 +4,12 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import markdoc from "@astrojs/markdoc";
 import keystatic from "@keystatic/astro";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.haneulcha.com",
   integrations: [mdx(), sitemap(), react(), markdoc(), keystatic()],
-  output: "server",
+  output: "static",
+  adapter: cloudflare(),
 });

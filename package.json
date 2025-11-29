@@ -21,13 +21,13 @@
     "@keystatic/astro": "^5.0.6",
     "@keystatic/core": "^0.5.48",
     "astro": "^5.16.2",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^19",
+    "react-dom": "^19"
   },
   "packageManager": "pnpm@7.33.7+sha256.d1581d46ed10f54ff0cbdd94a2373b1f070202b0fbff29f27c2ce01460427043",
   "devDependencies": {
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "commander": "^14.0.2",
     "date-fns": "^4.1.0",
     "inquirer": "^12.11.1",

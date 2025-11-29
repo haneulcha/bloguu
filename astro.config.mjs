@@ -12,4 +12,13 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), react(), markdoc(), keystatic()],
   output: "static",
   adapter: cloudflare(),
+  vite: {
+    resolve: {
+      alias:
+        import.meta.env.PROD &&
+        {
+          "react-dom/server": "react-dom/server.edge",
+        },
+    },
+  },
 });

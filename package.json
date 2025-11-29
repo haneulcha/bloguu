@@ -8,13 +8,20 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "new-post": "node scripts/create-post.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.1.0",
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.4.1"
+    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.16.2"
   },
-  "packageManager": "pnpm@7.33.7+sha256.d1581d46ed10f54ff0cbdd94a2373b1f070202b0fbff29f27c2ce01460427043"
+  "packageManager": "pnpm@7.33.7+sha256.d1581d46ed10f54ff0cbdd94a2373b1f070202b0fbff29f27c2ce01460427043",
+  "devDependencies": {
+    "commander": "^14.0.2",
+    "date-fns": "^4.1.0",
+    "inquirer": "^12.11.1",
+    "typescript": "^5.9.3"
+  }
 }

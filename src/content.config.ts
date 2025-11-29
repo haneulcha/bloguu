@@ -2,10 +2,10 @@ import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.mdx', base: './src/content/blog' }),
+  loader: glob({ pattern: '**/[^_]*.{md,mdx,mdoc}', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
@@ -16,7 +16,7 @@ const blog = defineCollection({
 
 const film = defineCollection({
   loader: glob({
-    pattern: '**/[^_]*.{md,mdx}',
+    pattern: '**/[^_]*.{md,mdx,mdoc}',
     base: './src/content/films',
   }),
   schema: z.object({
@@ -34,7 +34,7 @@ const film = defineCollection({
 
 const bobsBurgers = defineCollection({
   loader: glob({
-    pattern: '**/[^_]*.{md,mdx}',
+    pattern: '**/[^_]*.{md,mdx,mdoc}',
     base: './src/content/bobs-burgers',
   }),
   schema: z.object({

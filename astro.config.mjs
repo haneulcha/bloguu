@@ -11,7 +11,9 @@ export default defineConfig({
   site: "https://blog.haneulcha.com",
   integrations: [mdx(), sitemap(), react(), markdoc(), keystatic()],
   output: "static",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "compile",
+  }),
   vite: {
     resolve: {
       alias:

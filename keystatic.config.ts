@@ -34,7 +34,7 @@ export default config({
           directory: 'src/assets/images/blog',
           publicPath: '@assets/images/blog/',
         }),
-        content: fields.markdoc({
+        content: fields.mdx({
           label: 'Content',
           options: {
             image: {
@@ -71,7 +71,7 @@ export default config({
           directory: 'src/assets/images/films',
           publicPath: '@assets/images/films/',
         }),
-        content: fields.markdoc({
+        content: fields.mdx({
           label: 'Content',
           options: {
             image: {
@@ -97,7 +97,7 @@ export default config({
           validation: { min: 0, max: 10 }
         }),
         pubDate: fields.date({ label: 'Publication Date' }),
-        content: fields.markdoc({
+        content: fields.mdx({
           label: 'Content',
           options: {
             image: {

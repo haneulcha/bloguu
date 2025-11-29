@@ -38,6 +38,9 @@ dependencies:
   react-dom:
     specifier: ^19
     version: registry.npmjs.org/react-dom@19.2.0(react@19.2.0)
+  sharp:
+    specifier: ^0.34.5
+    version: registry.npmjs.org/sharp@0.34.5
 
 devDependencies:
   '@types/react':
@@ -1404,7 +1407,6 @@ packages:
     version: 1.0.0
     engines: {node: '>=18'}
     dev: false
-    optional: true
 
   registry.npmjs.org/@img/sharp-darwin-arm64@0.33.5:
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.33.5.tgz}
@@ -8181,7 +8183,6 @@ packages:
       '@img/sharp-win32-ia32': registry.npmjs.org/@img/sharp-win32-ia32@0.34.5
       '@img/sharp-win32-x64': registry.npmjs.org/@img/sharp-win32-x64@0.34.5
     dev: false
-    optional: true
 
   registry.npmjs.org/shiki@3.17.0:
     resolution: {integrity: sha512-lUZfWsyW7czITYTdo/Tb6ZM4VfyXlzmKYBQBjTz+pBzPPkP08RgIt00Ls1Z50Cl3SfwJsue6WbJeF3UgqLVI9Q==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/shiki/-/shiki-3.17.0.tgz}

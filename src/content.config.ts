@@ -1,44 +1,41 @@
-import { defineCollection, reference, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { defineCollection, reference, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
+  loader: glob({ pattern: '**/[^_]*.mdx', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    tags: z.array(z.string()).optional(),
     heroImage: z.string().optional(),
-    relatedPosts: z.array(reference("blog")).optional(),
-    isDraft: z.boolean().optional(),
-  }),
+    tags: z.array(z.string()).optional(),
+    relatedPosts: z.array(reference('blog')).optional(),
+  })
 });
 
 const film = defineCollection({
   loader: glob({
-    pattern: "**/[^_]*.{md,mdx}",
-    base: "./src/content/films",
+    pattern: '**/[^_]*.{md,mdx}',
+    base: './src/content/films',
   }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     watchedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).optional(),
     heroImage: z.string().optional(),
-    relatedPosts: z.array(reference("blog")).optional(),
-    isDraft: z.boolean().optional(),
+    relatedPosts: z.array(reference('blog')).optional(),
+    rate: z.number().optional(),
   }),
 });
 
 const bobsBurgers = defineCollection({
   loader: glob({
-    pattern: "**/[^_]*.{md,mdx}",
-    base: "./src/content/bobs-burgers",
+    pattern: '**/[^_]*.{md,mdx}',
+    base: './src/content/bobs-burgers',
   }),
   schema: z.object({
     title: z.string(),
@@ -51,4 +48,4 @@ const bobsBurgers = defineCollection({
   }),
 });
 
-export const collections = { blog, "bobs-burgers": bobsBurgers, film };
+export const collections = { blog, 'bobs-burgers': bobsBurgers, film };

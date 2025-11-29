@@ -1,0 +1,22 @@
+---
+title: "astro update to v5"
+description: "올해도 업데이트가 반으로 시작"
+pubDate: 2025-03-02
+postType: dev
+tags: ["astro", "update"]
+---
+
+10개월 만에 업데이트. 4.7.1 -> 5.4.1으로 올렸다.
+
+아니 아스트로는 메이저 업데이트를 왜 이렇게 자주해?? 싶었는데 내가 블로그를 너무 방치해서 체감상 빠른 것처럼 느낀 거 였음.
+
+[마이그레이션 문서](https://docs.astro.build/en/guides/upgrade-to/v5/)
+
+메이저라 그런지 변화가 꽤 커보였는데 내가 기존 아스트로를 잘 안 써서 맥락은 모름. 하라는대로 했다.
+
+- `/src/content/content.ts` -> `src/content.config.ts`
+  - 컬렉션 정의할 때, `type: "content"` -> `loader: glob(...)`
+  - (사소하지만) 날짜 스키마는 `z.coerce.date()`로 간단해짐 (나만 몰랐을 수 있음)
+- `getCollection` 리턴 타입에 컬렉션 데이터의 slug 대신 id로 대체
+- `post.render()` -> `render()`
+  - `import { render } from "astro:content";`
